@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { TestExpandRoutingModule } from './test-expand-routing.module';
 import { TestExpandComponent } from './test-expand.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [
     CommonModule,
     TestExpandRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class TestExpandModule { }

@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'test-expand',
+  { path: '', redirectTo: 'test-expand', pathMatch: 'full' },
+  {
+    path: 'test-expand',
     loadChildren: () => import('./test-expand/test-expand.module').then(m => m.TestExpandModule)
   }];
 
