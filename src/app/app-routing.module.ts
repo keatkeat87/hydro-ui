@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: 'test-expand',
     loadChildren: () => import('./test-expand/test-expand.module').then(m => m.TestExpandModule)
-  }];
+  },
+  {
+    path: 'test-dialog',
+    loadChildren: () => import('./test-dialog/test-dialog.module').then(m => m.TestDialogModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
