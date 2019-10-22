@@ -15,10 +15,10 @@ export class TestDialogComponent implements OnInit {
 
   @ViewChild('template', { static: true }) template: TemplatePortal;
 
+  abc: OverlayRef;
+
   ngOnInit() {
   }
-
-  abc: OverlayRef;
 
   close() {
     this.abc.dispose();
@@ -43,13 +43,13 @@ export class TestDialogComponent implements OnInit {
 
     this.abc.attach(this.template);
 
-    setTimeout(() => {
-      const positionStrategyA = this.overlay.position()
-        .global()
-        .right('20%');
+    // setTimeout(() => {
+    //   const positionStrategyA = this.overlay.position()
+    //     .global()
+    //     .right('20%');
 
-      this.abc.updatePositionStrategy(positionStrategyA);
-    }, 1000);
+    //   this.abc.updatePositionStrategy(positionStrategyA);
+    // }, 1000);
   }
 
 
