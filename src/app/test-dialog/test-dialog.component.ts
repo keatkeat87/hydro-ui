@@ -29,14 +29,13 @@ export class TestDialogComponent implements OnInit {
 
   click() {
     const positionStrategy = this.overlay.position()
-      .global()
-      .right();
+      .global();
 
     const overlayConfig = new OverlayConfig({
-      width: '80%',
+      width: '100%',
       height: '100%',
-      backdropClass: 'customBackdropClass',
       panelClass: 'customOverlayPanelTransition',
+      backdropClass: 'customBackdropClass',
       hasBackdrop: true,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       positionStrategy
