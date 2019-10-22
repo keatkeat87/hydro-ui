@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-test-dialog',
@@ -7,9 +9,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public overlay: Overlay
+  ) { }
+
+  @ViewChild('template', { static: true }) template: TemplatePortal;
 
   ngOnInit() {
   }
+
+  abc: OverlayRef;
+
+  close() {
+    this.abc.dispose();
+  }
+
+  click() {
+    const positionStrategy = this.overlay.position()
+      .global()
+      .right();
+
+    const overlayConfig = new OverlayConfig({
+      width: '80%',
+      height: '100%',
+      panelClass: 'markRequestAnimation',
+      hasBackdrop: true,
+      scrollStrategy: this.overlay.scrollStrategies.block(),
+      positionStrategy
+    });
+
+    this.abc = this.overlay.create(overlayConfig);
+
+    this.abc.attach(this.template);
+
+    setTimeout(() => {
+      const positionStrategyA = this.overlay.position()
+        .global()
+        .right('20%');
+
+      this.abc.updatePositionStrategy(positionStrategyA);
+    }, 1000);
+  }
+
+
+
 
 }
