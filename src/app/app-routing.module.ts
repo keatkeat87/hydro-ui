@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'test-dialog', pathMatch: 'full' },
+  { path: '', redirectTo: 'test-clipboard', pathMatch: 'full' },
   {
     path: 'test-expand',
     loadChildren: () => import('./test-expand/test-expand.module').then(m => m.TestExpandModule)

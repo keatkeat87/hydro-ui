@@ -9,6 +9,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.markRequestAnimation {
-  transition: 0.3s ease-in;
+.customBackdropClass{
+  background: rgba(0,0,0,0.32);
+}
+
+.customOverlayPanelTransition {
+  transition: 0.4s all;
+  right:10%;
 }
