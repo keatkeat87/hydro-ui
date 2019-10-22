@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel #dada>
     <mat-expansion-panel-header>
       <mat-panel-title>
         Personal data
@@ -10,7 +10,7 @@
     </mat-expansion-panel-header>
 
     <mat-form-field>
-      <input #input matInput placeholder="First name">
+      <input #input (focus)="focus()" matInput placeholder="First name">
     </mat-form-field>
 
     <mat-form-field>
@@ -31,3 +31,8 @@
 </mat-accordion>
 
 <div (click)="click()">click</div>
+<div #target >
+  <div>
+    <input>
+  </div>
+</div>
