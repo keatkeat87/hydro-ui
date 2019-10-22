@@ -32,7 +32,8 @@ export class TestDialogComponent implements OnInit {
     const overlayConfig = new OverlayConfig({
       width: '80%',
       height: '100%',
-      panelClass: 'markRequestAnimation',
+      backdropClass: 'customBackdropClass',
+      panelClass: 'customOverlayPanelTransition',
       hasBackdrop: true,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       positionStrategy
