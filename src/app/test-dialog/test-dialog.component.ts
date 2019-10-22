@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Injector } from '@angular/core';
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-test-dialog',
@@ -10,7 +11,9 @@ import { TemplatePortal } from '@angular/cdk/portal';
 export class TestDialogComponent implements OnInit {
 
   constructor(
-    public overlay: Overlay
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef,
+    private injector: Injector
   ) { }
 
   @ViewChild('template', { static: true }) template: TemplatePortal;
@@ -39,8 +42,9 @@ export class TestDialogComponent implements OnInit {
     });
 
     this.abc = this.overlay.create(overlayConfig);
-
-    this.abc.attach(this.template);
+    const component =  new ComponentPortal(ModalComponent, this.viewContainerRef, this.injector);
+    const componentRef = this.abc.attach(component);
+    console.warn(componentRef);
 
     // setTimeout(() => {
     //   const positionStrategyA = this.overlay.position()
