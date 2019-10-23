@@ -8,8 +8,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     trigger('slideContent', [
       state('void', style({ transform: 'translate(100%, 0)' })),
       state('enter', style({ transform: 'none' })),
+      state('x0', style({ right: '20%' })),
       state('leave', style({ transform: 'translate(-100%, 0)' })),
-      transition('* => *', animate('2000ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
+      transition('* => *', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
     ])
   ],
   // tslint:disable-next-line: no-host-metadata-property
@@ -24,6 +25,10 @@ export class ModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  click(){
 
   }
 
