@@ -140,24 +140,24 @@ export class TestTableComponent implements OnInit {
 
 
   panstart3(event: HammerInput, elem: HTMLElement) {
-    this.recordSymbolWidth = this.recordSymbolWidth; // 80
+    this.recordSymbolWidth = this.symbolWidth; // 80
     elem.classList.add('active');
   }
 
   panmove3(event: HammerInput) {
     const deltaX = event.deltaX;
     const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
-    const panLeftMaximum = this.recordSymbolWidth - this.symbolMinWidth; // 50 - 30 = 20
+    const panLeftMaximum = this.symbolWidth - this.symbolMinWidth; // 50 - 30 = 20
 
     if (panDirection === 'panRight') {
-      this.recordSymbolWidth = deltaX + this.recordSymbolWidth;
+      this.symbolWidth = deltaX + this.recordSymbolWidth;
     }
     else {
       if (Math.abs(deltaX) > panLeftMaximum) {
         // no resizing
       }
       else {
-        this.recordSymbolWidth = deltaX + this.recordSymbolWidth;
+        this.symbolWidth = deltaX + this.recordSymbolWidth;
       }
     }
   }

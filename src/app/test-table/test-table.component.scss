@@ -3,9 +3,29 @@
   display: block;
 }
 
+.overflowForTable{
+  width:100%;
+  overflow: auto;
+}
+
 mat-header-row,
 mat-row {
   min-height: 40px; // follow adwords
+  flex-wrap: nowrap;
+  border:none;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    bottom:0;
+    height:1px;
+    width:100%;
+    background: #e0e0e0;
+  }
+}
+
+mat-row:last-child mat-cell{
+  border-bottom:none;
 }
 
 mat-header-cell,
@@ -13,11 +33,12 @@ mat-cell {
   font-size: 12px;
   flex: none;
   overflow: visible;
+  border-bottom:1px solid #e0e0e0;
 }
 
 mat-header-cell ~ mat-header-cell,
 mat-cell ~ mat-cell {
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid #e0e0e0;
 }
 
 mat-header-cell {
