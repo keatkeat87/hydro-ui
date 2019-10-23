@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 .customBackdropClass{
   background: rgba(0,0,0,0.32);
 }

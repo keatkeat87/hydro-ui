@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HammerInput } from '@angular/material/core';
 
 export interface PeriodicElement {
   name: string;
@@ -31,8 +32,138 @@ export class TestTableComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+  positionWidth = 50;
+  nameWidth = 50;
+  weightWidth = 150;
+  symbolWidth = 150;
+
+  positionMinWidth = 30;
+  nameMinWidth = 30;
+  weightMinWidth = 30;
+  symbolMinWidth = 30;
+
+  recordPositionWidth: number;
+  recordNameWidth: number;
+  recordWeightWidth: number;
+  recordSymbolWidth: number;
 
   ngOnInit() {
+  }
+
+  panstart(event: HammerInput, elem: HTMLElement) {
+    this.recordPositionWidth = this.positionWidth; // 80
+    elem.classList.add('active');
+  }
+
+  panmove(event: HammerInput) {
+    const deltaX = event.deltaX;
+    const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
+    const panLeftMaximum = this.positionWidth - this.positionMinWidth; // 50 - 30 = 20
+
+    if (panDirection === 'panRight') {
+      this.positionWidth = deltaX + this.recordPositionWidth;
+    }
+    else {
+      if (Math.abs(deltaX) > panLeftMaximum) {
+        // no resizing
+      }
+      else {
+        this.positionWidth = deltaX + this.recordPositionWidth;
+      }
+    }
+  }
+
+  panend(elem: HTMLElement) {
+    elem.classList.remove('active');
+  }
+
+
+
+  panstart1(event: HammerInput, elem: HTMLElement) {
+    this.recordNameWidth = this.nameWidth; // 80
+    elem.classList.add('active');
+  }
+
+  panmove1(event: HammerInput) {
+    const deltaX = event.deltaX;
+    const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
+    const panLeftMaximum = this.nameWidth - this.nameMinWidth; // 50 - 30 = 20
+
+    if (panDirection === 'panRight') {
+      this.nameWidth = deltaX + this.recordNameWidth;
+    }
+    else {
+      if (Math.abs(deltaX) > panLeftMaximum) {
+        // no resizing
+      }
+      else {
+        this.nameWidth = deltaX + this.recordNameWidth;
+      }
+    }
+  }
+
+  panend1(elem: HTMLElement) {
+    elem.classList.remove('active');
+  }
+
+
+
+
+  panstart2(event: HammerInput, elem: HTMLElement) {
+    this.recordWeightWidth = this.weightWidth; // 80
+    elem.classList.add('active');
+  }
+
+  panmove2(event: HammerInput) {
+    const deltaX = event.deltaX;
+    const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
+    const panLeftMaximum = this.weightWidth - this.weightMinWidth; // 50 - 30 = 20
+
+    if (panDirection === 'panRight') {
+      this.weightWidth = deltaX + this.recordWeightWidth;
+    }
+    else {
+      if (Math.abs(deltaX) > panLeftMaximum) {
+        // no resizing
+      }
+      else {
+        this.weightWidth = deltaX + this.recordWeightWidth;
+      }
+    }
+  }
+
+  panend2(elem: HTMLElement) {
+    elem.classList.remove('active');
+  }
+
+
+
+
+  panstart3(event: HammerInput, elem: HTMLElement) {
+    this.recordSymbolWidth = this.recordSymbolWidth; // 80
+    elem.classList.add('active');
+  }
+
+  panmove3(event: HammerInput) {
+    const deltaX = event.deltaX;
+    const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
+    const panLeftMaximum = this.recordSymbolWidth - this.symbolMinWidth; // 50 - 30 = 20
+
+    if (panDirection === 'panRight') {
+      this.recordSymbolWidth = deltaX + this.recordSymbolWidth;
+    }
+    else {
+      if (Math.abs(deltaX) > panLeftMaximum) {
+        // no resizing
+      }
+      else {
+        this.recordSymbolWidth = deltaX + this.recordSymbolWidth;
+      }
+    }
+  }
+
+  panend3(elem: HTMLElement) {
+    elem.classList.remove('active');
   }
 
 }
