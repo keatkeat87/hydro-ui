@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-test-double-dialog',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestDoubleDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        animal: 'panda'
+      }
+    });
+    
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        animal: 'panda'
+      }
+    });
+  }
 
   ngOnInit() {
   }
 
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-data-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  constructor() { }
 }

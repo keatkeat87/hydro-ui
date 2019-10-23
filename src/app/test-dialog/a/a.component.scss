@@ -1,0 +1,16 @@
+@import "~@angular/material/theming";
+
+:host {
+  display: block;
+  width: 80%;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  background: white;
+  box-sizing: border-box;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 16px;
+  @include mat-elevation(2);
+  
+}

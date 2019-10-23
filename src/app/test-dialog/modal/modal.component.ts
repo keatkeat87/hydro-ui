@@ -6,10 +6,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./modal.component.scss'],
   animations: [
     trigger('slideContent', [
-      state('void', style({ transform: 'translate(100%, 0)' })),
-      state('enter', style({ transform: 'none' })),
-      state('x0', style({ right: '20%' })),
-      state('leave', style({ transform: 'translate(-100%, 0)' })),
+      state('void, leave', style({ transform: 'translateX(100%)' })),
+      state('enter, origin', style({ transform: 'none' })),
+      state('move', style({ transform: 'translateX(-25%)' })),
+
       transition('* => *', animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
     ])
   ],
@@ -23,13 +23,17 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class ModalComponent implements OnInit {
 
   constructor() { }
+  animationState: any;
 
   ngOnInit() {
 
   }
 
-  click(){
-
+  click() {
+    this.animationState = 'move';
+  }
+  click1() {
+    this.animationState = 'origin';
   }
 
 }
