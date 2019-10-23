@@ -6,10 +6,12 @@ import { TestDialogComponent } from './test-dialog.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { ModalModule } from './modal/modal.module';
+import { AComponent } from './a/a.component';
+import { BComponent } from './b/b.component';
 
 
 @NgModule({
-  declarations: [TestDialogComponent],
+  declarations: [TestDialogComponent, AComponent, BComponent],
   imports: [
     CommonModule,
     TestDialogRoutingModule,
