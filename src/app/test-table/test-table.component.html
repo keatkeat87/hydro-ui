@@ -1,42 +1,49 @@
 <div class="overflowForTable mat-elevation-z8">
 
-  <mat-table [dataSource]="dataSource" matSort >
+  <mat-table [dataSource]="dataSource" matSort>
     <ng-container cdkColumnDef="position" sticky>
       <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="positionWidth">
-        <span>No.</span>
-        <div class="lineActiveArea" #positionLineActiveArea></div>
-        <div class="lineHoverArea" (panstart)="panstart($event, positionLineActiveArea)" (panmove)="panmove($event)" (panend)="panend(positionLineActiveArea)"></div>
+        <span class="headerTitle">No.</span>
+        <div class="resizeColumnLine" (click)="$event.stopPropagation()" (panstart)="panstart($event)" (panmove)="panmove($event)"></div>
       </mat-header-cell>
-      <mat-cell *cdkCellDef="let element" [style.width.px]="positionWidth"> {{element.position}} </mat-cell>
+      <mat-cell *cdkCellDef="let element" [style.width.px]="positionWidth">
+        <div class="cellContent"> 
+          <img src="../../assets/download.jpg" style="width:100%"> 
+        </div>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="name">
       <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="nameWidth">
-        <span>Name</span>
-        <div class="lineActiveArea" #nameLineActiveArea></div>
-        <div class="lineHoverArea" (panstart)="panstart1($event, nameLineActiveArea)" (panmove)="panmove1($event)" (panend)="panend1(nameLineActiveArea)"></div>
+        <span class="headerTitle">Name is super man</span>
+        <div class="resizeColumnLine" (click)="$event.stopPropagation()" (panstart)="panstart1($event)" (panmove)="panmove1($event)"></div>
       </mat-header-cell>
-      <mat-cell *cdkCellDef="let element" [style.width.px]="nameWidth"> {{element.name}} </mat-cell>
+      <mat-cell *cdkCellDef="let element" [style.width.px]="nameWidth">
+        <div class="cellContent"> {{element.name}} </div>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="weight">
-      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="weightWidth">
-        <span>Weight</span>
-        <div class="lineActiveArea" #weightLineActiveArea></div>
-        <div class="lineHoverArea" (panstart)="panstart2($event, weightLineActiveArea)" (panmove)="panmove2($event)" (panend)="panend2(weightLineActiveArea)"></div>
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="weightWidth" arrowPosition="before" class="alignRight">
+        <span class="headerTitle">Weight is super man</span>
+        <div class="resizeColumnLine" (click)="$event.stopPropagation()" (panstart)="panstart2($event)" (panmove)="panmove2($event)"></div>
       </mat-header-cell>
-      <mat-cell *cdkCellDef="let element" [style.width.px]="weightWidth"> {{element.weight}} </mat-cell>
+      <mat-cell *cdkCellDef="let element" [style.width.px]="weightWidth" class="alignRight">
+        <div class="cellContent"> {{element.weight}} </div>
+        <span class="icon">I</span>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="symbol">
       <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="symbolWidth">
-        <span>Symbol</span>
-        <div class="lineActiveArea" #symbolLineActiveArea></div>
-        <div class="lineHoverArea" (panstart)="panstart3($event, symbolLineActiveArea)" (panmove)="panmove3($event)" (panend)="panend3(symbolLineActiveArea)"></div>
+        <span class="headerTitle">Symbol</span>
+        <div class="resizeColumnLine" (click)="$event.stopPropagation()" (panstart)="panstart3($event)" (panmove)="panmove3($event)"></div>
       </mat-header-cell>
-      <mat-cell *cdkCellDef="let element" [style.width.px]="symbolWidth"> {{element.symbol}} </mat-cell>
+      <mat-cell *cdkCellDef="let element" [style.width.px]="symbolWidth">
+        <div class="cellContent"> {{element.symbol}} </div>
+      </mat-cell>
     </ng-container>
-    
+
     <ng-container cdkColumnDef="action">
       <mat-header-cell *cdkHeaderCellDef class="actionHeaderCell"></mat-header-cell>
       <mat-cell *cdkCellDef="let element" class="actionCell">

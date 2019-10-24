@@ -5,6 +5,7 @@ import { TestTableRoutingModule } from './test-table-routing.module';
 import { TestTableComponent } from './test-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     CommonModule,
     TestTableRoutingModule,
     MatTableModule,
+    MatSortModule,
     CdkTableModule,
   ]
 })

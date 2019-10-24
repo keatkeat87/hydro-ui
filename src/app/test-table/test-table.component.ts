@@ -69,13 +69,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./test-table.component.scss']
 })
 export class TestTableComponent implements OnInit {
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor() { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  
+
   positionWidth = 50;
   nameWidth = 250;
   weightWidth = 250;
@@ -95,9 +95,8 @@ export class TestTableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  panstart(event: HammerInput, elem: HTMLElement) {
+  panstart(event: HammerInput) {
     this.recordPositionWidth = this.positionWidth; // 80
-    elem.classList.add('active');
   }
 
   panmove(event: HammerInput) {
@@ -119,14 +118,12 @@ export class TestTableComponent implements OnInit {
   }
 
   panend(elem: HTMLElement) {
-    elem.classList.remove('active');
   }
 
 
 
-  panstart1(event: HammerInput, elem: HTMLElement) {
+  panstart1(event: HammerInput) {
     this.recordNameWidth = this.nameWidth; // 80
-    elem.classList.add('active');
   }
 
   panmove1(event: HammerInput) {
@@ -149,16 +146,9 @@ export class TestTableComponent implements OnInit {
     }
   }
 
-  panend1(elem: HTMLElement) {
-    elem.classList.remove('active');
-  }
 
-
-
-
-  panstart2(event: HammerInput, elem: HTMLElement) {
+  panstart2(event: HammerInput) {
     this.recordWeightWidth = this.weightWidth; // 80
-    elem.classList.add('active');
   }
 
   panmove2(event: HammerInput) {
@@ -179,16 +169,8 @@ export class TestTableComponent implements OnInit {
     }
   }
 
-  panend2(elem: HTMLElement) {
-    elem.classList.remove('active');
-  }
-
-
-
-
-  panstart3(event: HammerInput, elem: HTMLElement) {
+  panstart3(event: HammerInput) {
     this.recordSymbolWidth = this.symbolWidth; // 80
-    elem.classList.add('active');
   }
 
   panmove3(event: HammerInput) {
@@ -209,8 +191,5 @@ export class TestTableComponent implements OnInit {
     }
   }
 
-  panend3(elem: HTMLElement) {
-    elem.classList.remove('active');
-  }
 
 }
