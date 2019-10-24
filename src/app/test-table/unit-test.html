@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .pre {
+      width: 200px;
+      background: #b4b4b4;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    #child {
+      display: inline;
+      /* white-space: pre-line; */
+    }
+
+    #icon{
+      position: absolute;
+      right:0;
+      top:calc(50% - 9px);
+      width:20px;
+      text-align: center;
+      background: gray;
+    }
+
+    /* .flex{
+      display: flex;
+      width:100px;
+      border:1px solid red;
+    }
+    .text{
+      width:100%;
+      border:1px solid red;
+    }
+    .textIcon{
+      width:0;
+      border:1px solid red;
+    } */
+  </style>
+</head>
+
+<body>
+  <!-- <div class="flex">
+    <div class="text">this is a good day you kno</div>
+    <div class="textIcon">i</div>
+  </div> -->
+  <textarea name="" id="textarea" cols="30" rows="10">this is a good day </textarea>
+
+  <div class="pre" id="parent">
+    <div id="child"></div>
+    <span id="icon">I</span>
+  </div>
+
+  <script>
+    const textareaElemValue = document.getElementById('textarea').value;
+    const parentElem = document.getElementById('parent');
+    const childElem = document.getElementById('child');
+    const iconElem = document.getElementById('icon');
+    const parentElemPaddingRight = +window.getComputedStyle(parentElem).getPropertyValue('padding-right').split('px')[0];
+    const childElemWhiteSpace = window.getComputedStyle(childElem).getPropertyValue('white-space');
+
+    childElem.innerHTML = textareaElemValue;
+    if(childElemWhiteSpace === 'pre-line'){
+      childElem.style.whiteSpace = 'pre';
+    } else{
+      childElem.style.whiteSpace = 'nowrap';
+    }
+
+    const textWidth = childElem.getBoundingClientRect().width; //363.09375
+    parentElem.style.width = textWidth + parentElemPaddingRight + 'px';
+
+    // remove all style
+    childElem.style.whiteSpace = '';
+  </script>
+</body>
+
+</html>
