@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HammerInput } from '@angular/material/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;
@@ -9,6 +11,46 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
+  { position: 1, name: 'Hydrogen Hydrogen Hydrogen Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
@@ -27,14 +69,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./test-table.component.scss']
 })
 export class TestTableComponent implements OnInit {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor() { }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
   positionWidth = 50;
-  nameWidth = 50;
-  weightWidth = 150;
+  nameWidth = 250;
+  weightWidth = 250;
   symbolWidth = 150;
 
   positionMinWidth = 30;
@@ -48,6 +92,7 @@ export class TestTableComponent implements OnInit {
   recordSymbolWidth: number;
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
   }
 
   panstart(event: HammerInput, elem: HTMLElement) {
@@ -58,7 +103,7 @@ export class TestTableComponent implements OnInit {
   panmove(event: HammerInput) {
     const deltaX = event.deltaX;
     const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
-    const panLeftMaximum = this.positionWidth - this.positionMinWidth; // 50 - 30 = 20
+    const panLeftMaximum = this.recordPositionWidth - this.positionMinWidth; // 50 - 30 = 20
 
     if (panDirection === 'panRight') {
       this.positionWidth = deltaX + this.recordPositionWidth;
@@ -87,7 +132,9 @@ export class TestTableComponent implements OnInit {
   panmove1(event: HammerInput) {
     const deltaX = event.deltaX;
     const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
-    const panLeftMaximum = this.nameWidth - this.nameMinWidth; // 50 - 30 = 20
+    const panLeftMaximum = this.recordNameWidth - this.nameMinWidth; // 250 - 30 = 220
+    console.log('deltaX', deltaX);
+    console.log('panLeftMaximum', panLeftMaximum);
 
     if (panDirection === 'panRight') {
       this.nameWidth = deltaX + this.recordNameWidth;
@@ -117,7 +164,7 @@ export class TestTableComponent implements OnInit {
   panmove2(event: HammerInput) {
     const deltaX = event.deltaX;
     const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
-    const panLeftMaximum = this.weightWidth - this.weightMinWidth; // 50 - 30 = 20
+    const panLeftMaximum = this.recordWeightWidth - this.weightMinWidth; // 50 - 30 = 20
 
     if (panDirection === 'panRight') {
       this.weightWidth = deltaX + this.recordWeightWidth;
@@ -147,7 +194,7 @@ export class TestTableComponent implements OnInit {
   panmove3(event: HammerInput) {
     const deltaX = event.deltaX;
     const panDirection = deltaX > 0 ? 'panRight' : 'panLeft';
-    const panLeftMaximum = this.symbolWidth - this.symbolMinWidth; // 50 - 30 = 20
+    const panLeftMaximum = this.recordSymbolWidth - this.symbolMinWidth; // 50 - 30 = 20
 
     if (panDirection === 'panRight') {
       this.symbolWidth = deltaX + this.recordSymbolWidth;

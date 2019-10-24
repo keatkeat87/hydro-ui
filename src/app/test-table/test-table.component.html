@@ -1,8 +1,8 @@
 <div class="overflowForTable mat-elevation-z8">
 
-  <mat-table [dataSource]="dataSource">
-    <ng-container cdkColumnDef="position">
-      <mat-header-cell *cdkHeaderCellDef [style.width.px]="positionWidth">
+  <mat-table [dataSource]="dataSource" matSort >
+    <ng-container cdkColumnDef="position" sticky>
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="positionWidth">
         <span>No.</span>
         <div class="lineActiveArea" #positionLineActiveArea></div>
         <div class="lineHoverArea" (panstart)="panstart($event, positionLineActiveArea)" (panmove)="panmove($event)" (panend)="panend(positionLineActiveArea)"></div>
@@ -11,7 +11,7 @@
     </ng-container>
 
     <ng-container cdkColumnDef="name">
-      <mat-header-cell *cdkHeaderCellDef [style.width.px]="nameWidth">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="nameWidth">
         <span>Name</span>
         <div class="lineActiveArea" #nameLineActiveArea></div>
         <div class="lineHoverArea" (panstart)="panstart1($event, nameLineActiveArea)" (panmove)="panmove1($event)" (panend)="panend1(nameLineActiveArea)"></div>
@@ -20,7 +20,7 @@
     </ng-container>
 
     <ng-container cdkColumnDef="weight">
-      <mat-header-cell *cdkHeaderCellDef [style.width.px]="weightWidth">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="weightWidth">
         <span>Weight</span>
         <div class="lineActiveArea" #weightLineActiveArea></div>
         <div class="lineHoverArea" (panstart)="panstart2($event, weightLineActiveArea)" (panmove)="panmove2($event)" (panend)="panend2(weightLineActiveArea)"></div>
@@ -29,16 +29,27 @@
     </ng-container>
 
     <ng-container cdkColumnDef="symbol">
-      <mat-header-cell *cdkHeaderCellDef [style.width.px]="symbolWidth">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header [style.width.px]="symbolWidth">
         <span>Symbol</span>
         <div class="lineActiveArea" #symbolLineActiveArea></div>
         <div class="lineHoverArea" (panstart)="panstart3($event, symbolLineActiveArea)" (panmove)="panmove3($event)" (panend)="panend3(symbolLineActiveArea)"></div>
       </mat-header-cell>
       <mat-cell *cdkCellDef="let element" [style.width.px]="symbolWidth"> {{element.symbol}} </mat-cell>
     </ng-container>
+    
+    <ng-container cdkColumnDef="action">
+      <mat-header-cell *cdkHeaderCellDef class="actionHeaderCell"></mat-header-cell>
+      <mat-cell *cdkCellDef="let element" class="actionCell">
+        <div class="overOtherColumn">
+          <span class="icon">A</span>
+          <span class="icon">B</span>
+          <span class="icon">C</span>
+        </div>
+      </mat-cell>
+    </ng-container>
 
     <!-- Header and Row Declarations -->
-    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *cdkHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
     <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>
